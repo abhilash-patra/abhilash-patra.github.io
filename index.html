@@ -3,52 +3,426 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhilash Patra | Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Abhilash Patra | Research Scientist</title>
+    <meta name="description" content="Personal website of Abhilash Patra showcasing research, publications, and academic profile">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .hero h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h2::after {
+            background-color: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin: 0 auto 1.5rem;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .bio-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .bio-text {
+            flex: 1;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .research-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .research-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .publication-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .publication-authors {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+        
+        .publication-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .publication-meta span {
+            background-color: var(--light-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-links a {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .bio-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Abhilash Patra</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#bio">Bio Sketch</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container header-content">
+            <h1>Abhilash Patra</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#bio">Bio</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
-    <section id="home">
-        <h2>Welcome</h2>
-        <p>Welcome to my personal website! Here, you will find details about my research, publications, and contact information.</p>
+    
+    <section id="home" class="hero">
+        <div class="container">
+            <img src="profile.jpg" alt="Abhilash Patra" class="profile-img">
+            <h2>Research Scientist</h2>
+            <p>Exploring the frontiers of [Your Research Field] with a focus on [Specific Research Interests]</p>
+        </div>
     </section>
-
+    
     <section id="bio">
-        <h2>Bio Sketch</h2>
-        <p>Include your bio here with a professional photo.</p>
+        <div class="container">
+            <h2>Bio Sketch</h2>
+            <div class="bio-content">
+                <div class="bio-text">
+                    <p>Hello! I'm Abhilash Patra, a [Your Position] at [Your Institution]. My research focuses on [brief description of your research focus].</p>
+                    <p>I received my [Highest Degree] from [University Name] in [Year], where I worked with [Advisor's Name] on [Brief Thesis Topic]. Prior to that, I [previous education/experience].</p>
+                    <p>My work has been published in [Notable Journals/Conferences] and has been recognized with [Awards/Honors]. I'm particularly interested in [Specific Research Interests] and their applications to [Application Areas].</p>
+                    <p>When I'm not in the lab, I enjoy [Personal Interests/Hobbies].</p>
+                    <a href="cv.pdf" class="btn" download>Download CV</a>
+                </div>
+            </div>
+        </div>
     </section>
-
+    
     <section id="research">
-        <h2>Research</h2>
-        <p>Details about your research projects, interests, and collaborations.</p>
+        <div class="container">
+            <h2>Research</h2>
+            <p>My research spans several areas in [Your Field], with particular emphasis on:</p>
+            
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>Research Area 1</h3>
+                    <p>Detailed description of your first research area, including key questions, methods, and findings.</p>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Research Area 2</h3>
+                    <p>Detailed description of your second research area, including key questions, methods, and findings.</p>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Research Area 3</h3>
+                    <p>Detailed description of your third research area, including key questions, methods, and findings.</p>
+                </div>
+            </div>
+        </div>
     </section>
-
+    
     <section id="publications">
-        <h2>Publications</h2>
-        <p>List of your published papers with links.</p>
+        <div class="container">
+            <h2>Publications</h2>
+            <p>A selection of my recent publications:</p>
+            
+            <ul class="publication-list">
+                <li class="publication-item">
+                    <div class="publication-title">Title of Your Most Recent Publication</div>
+                    <div class="publication-authors">Your Name, Co-author 1, Co-author 2</div>
+                    <div class="publication-venue">Journal/Conference Name, Year</div>
+                    <div class="publication-meta">
+                        <span><a href="#" target="_blank">PDF</a></span>
+                        <span><a href="#" target="_blank">DOI</a></span>
+                        <span><a href="#" target="_blank">Code</a></span>
+                    </div>
+                </li>
+                
+                <li class="publication-item">
+                    <div class="publication-title">Title of Another Publication</div>
+                    <div class="publication-authors">Co-author 1, Your Name, Co-author 2</div>
+                    <div class="publication-venue">Journal/Conference Name, Year</div>
+                    <div class="publication-meta">
+                        <span><a href="#" target="_blank">PDF</a></span>
+                        <span><a href="#" target="_blank">DOI</a></span>
+                    </div>
+                </li>
+                
+                <li class="publication-item">
+                    <div class="publication-title">Title of an Earlier Publication</div>
+                    <div class="publication-authors">Your Name, Co-author 1</div>
+                    <div class="publication-venue">Journal/Conference Name, Year</div>
+                    <div class="publication-meta">
+                        <span><a href="#" target="_blank">PDF</a></span>
+                        <span><a href="#" target="_blank">DOI</a></span>
+                    </div>
+                </li>
+            </ul>
+            
+            <a href="https://scholar.google.com/citations?user=YOUR_ID" class="btn" target="_blank">View Google Scholar Profile</a>
+        </div>
     </section>
-
+    
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: your-email@example.com</p>
-        <p>LinkedIn: <a href="#">Your LinkedIn Profile</a></p>
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Feel free to reach out for collaborations, questions, or just to say hello!</p>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p><i class="fas fa-building"></i> Office: [Your Office Location]</p>
+                <p><i class="fas fa-map-marker-alt"></i> Address: [Your Institution Address]</p>
+            </div>
+            
+            <div class="contact-links">
+                <a href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+            </div>
+        </div>
     </section>
-
+    
     <footer>
-        <p>&copy; 2024 Abhilash Patra. All Rights Reserved.</p>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Abhilash Patra. All rights reserved.</p>
+            <p>Last updated: June 2024</p>
+        </div>
     </footer>
+
+    <script>
+        // Update copyright year automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
